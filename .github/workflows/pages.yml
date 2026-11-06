@@ -25,7 +25,7 @@ jobs:
       - name: Собрать только файлы отчёта
         run: |
           mkdir _site
-          cp -r index.html itog.mp3 robots.txt img _site/
+          cp -r index.html itog.mp3 robots.txt img v1 _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
