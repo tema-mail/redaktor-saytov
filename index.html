@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Правка сайта на странице, как в Тильде: что есть готового</title>
+<style>
+.rd{
+  --rd-bg:#ffffff; --rd-surface:#f6f8fb; --rd-line:rgba(6,12,24,.14);
+  --rd-text:#0b1220; --rd-muted:#465063; --rd-accent:#0b5fc0; --rd-good:#0a6b47; --rd-bad:#a8201a; --rd-warn:#8a5a00;
+  --rd-fs-xs:clamp(.8125rem,.79rem + .11vw,.875rem);
+  --rd-fs-s:clamp(.875rem,.85rem + .13vw,.9375rem);
+  --rd-fs-m:clamp(1rem,.97rem + .13vw,1.0625rem);
+  --rd-fs-l:clamp(1.125rem,1.08rem + .24vw,1.3125rem);
+  --rd-fs-xl:clamp(1.375rem,1.29rem + .43vw,1.6875rem);
+  --rd-fs-2xl:clamp(1.625rem,1.47rem + .76vw,2.0625rem);
+  --rd-fs-3xl:clamp(2rem,1.74rem + 1.3vw,2.75rem);
+  --rd-sp-2xs:clamp(.5rem,.48rem + .11vw,.5625rem);
+  --rd-sp-xs:clamp(.75rem,.72rem + .16vw,.875rem);
+  --rd-sp-s:clamp(1rem,.96rem + .22vw,1.125rem);
+  --rd-sp-m:clamp(1.5rem,1.43rem + .33vw,1.75rem);
+  --rd-sp-l:clamp(2rem,1.87rem + .65vw,2.5rem);
+  --rd-sp-xl:clamp(2.75rem,2.49rem + 1.3vw,4rem);
+  --rd-r-s:12px; --rd-r-m:16px;
+  --rd-gutter:clamp(1rem,.8rem + 1vw,1.5rem); --rd-max:1080px; --rd-measure:68ch; --rd-tap:44px;
+  box-sizing:border-box; margin:0; color:var(--rd-text); background:var(--rd-bg);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:var(--rd-fs-m); line-height:1.7; -webkit-text-size-adjust:100%;
+}
+@media (prefers-color-scheme:dark){
+  .rd{
+    --rd-bg:#05070b; --rd-surface:#101521; --rd-line:rgba(255,255,255,.14);
+    --rd-text:#f2f5fa; --rd-muted:#a8b2c3; --rd-accent:#6db8ff; --rd-good:#4fdba6; --rd-bad:#ff8d85; --rd-warn:#f0c060;
+  }
+}
+.rd *,.rd *::before,.rd *::after{box-sizing:inherit}
+.rd img{display:block;max-width:100%;height:auto;border-radius:var(--rd-r-s);border:1px solid var(--rd-line)}
+.rd p{margin:0 0 var(--rd-sp-s);max-width:var(--rd-measure);text-wrap:pretty}
+.rd h1,.rd h2,.rd h3{margin:0;font-weight:800;letter-spacing:-.02em;text-wrap:balance}
+.rd h1{font-size:var(--rd-fs-3xl);line-height:1.12;margin-block-end:var(--rd-sp-s)}
+.rd h2{font-size:var(--rd-fs-2xl);line-height:1.2;margin-block-end:var(--rd-sp-s)}
+.rd h3{font-size:var(--rd-fs-l);line-height:1.2;margin-block-end:var(--rd-sp-2xs)}
+.rd a{color:var(--rd-accent)}
+.rd :where(a,summary,audio):focus-visible{outline:2px solid var(--rd-accent);outline-offset:3px;border-radius:4px}
+.rd ul,.rd ol{margin:0 0 var(--rd-sp-s);padding-inline-start:1.25em;max-width:var(--rd-measure)}
+.rd li{margin-block-end:var(--rd-sp-2xs)}
+.rd figure{margin:0}
+.rd figcaption{margin-block-start:var(--rd-sp-2xs);font-size:var(--rd-fs-xs);line-height:1.5;color:var(--rd-muted)}
+.rd audio{display:block;width:100%;min-height:var(--rd-tap);margin-block:var(--rd-sp-xs)}
+.rd-page{width:100%;max-width:var(--rd-max);margin-inline:auto;padding:var(--rd-sp-l) var(--rd-gutter) var(--rd-sp-xl)}
+.rd-sec{margin-block-start:var(--rd-sp-xl)}
+.rd-meta{font-size:var(--rd-fs-s);color:var(--rd-muted)}
+.rd-lead{font-size:var(--rd-fs-l);line-height:1.55}
+.rd-box{padding:var(--rd-sp-s);border:1px solid var(--rd-line);border-radius:var(--rd-r-m);background:var(--rd-surface)}
+.rd-box > :last-child{margin-block-end:0}
+.rd-grid{display:grid;gap:var(--rd-sp-xs);grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))}
+.rd-grid > *{min-width:0}
+.rd-pick{border-color:var(--rd-good);border-width:2px}
+.rd-tag{display:inline-block;margin-block-end:var(--rd-sp-2xs);font-size:var(--rd-fs-xs);font-weight:800;color:var(--rd-good)}
+.rd-spec{margin:0 0 var(--rd-sp-xs);font-size:var(--rd-fs-s);line-height:1.5}
+.rd-spec dt{font-weight:800}
+.rd-spec dd{margin:0 0 var(--rd-sp-2xs)}
+.rd-duo{display:grid;gap:var(--rd-sp-s);grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));margin-block:var(--rd-sp-s)}
+.rd-duo > *{min-width:0}
+.rd-scroll{overflow-x:auto;overscroll-behavior-inline:contain;margin-block-end:var(--rd-sp-s);border:1px solid var(--rd-line);border-radius:var(--rd-r-m)}
+.rd table{border-collapse:collapse;min-width:max-content;font-size:var(--rd-fs-s);line-height:1.45}
+.rd-wrap{white-space:normal;min-width:260px;max-width:440px}
+.rd th,.rd td{padding:var(--rd-sp-2xs) var(--rd-sp-xs);border-block-end:1px solid var(--rd-line);text-align:left;vertical-align:top}
+.rd th{background:var(--rd-surface);font-weight:800}
+.rd-group td{background:var(--rd-surface);font-weight:800}
+.rd-ok{color:var(--rd-good);font-weight:800}
+.rd-no{color:var(--rd-bad);font-weight:800}
+.rd-mid{color:var(--rd-warn);font-weight:800}
+@media (prefers-reduced-motion:reduce){.rd *{transition:none !important;animation:none !important}}
+</style>
+</head>
+<body class="rd">
+<main class="rd-page">
+
+<h1>Правка сайта на странице, как в Тильде: что есть готового</h1>
+<p class="rd-meta">Разбор на примере Balance, 6 ноября 2026. Код проекта не менялся.</p>
+
+<div class="rd-box">
+  <h3>Послушать итог голосом</h3>
+  <audio controls preload="none" src="itog.mp3">Плеер не поддерживается, итог изложен ниже.</audio>
+</div>
+
+<section class="rd-sec">
+  <h2>Вывод</h2>
+  <p class="rd-lead">Готовые редакторы есть, но на Balance целиком не встал ни один из проверенных. Предлагаю свою лёгкую панель поверх сайта: опыт показал, что такая правка страницу не ломает.</p>
+  <p>Почему так: у Balance нет полей «заголовок» и «картинка». Каждая страница лежит цельным HTML Тильды, в среднем 826 КБ, плюс её рантайм. CMS хотят разложенный контент, а конструкторы пересобирают страницу целиком.</p>
+  <p>Два сильнейших кандидата, которые умеют брать готовый HTML, я запустил на странице «Империал». Правку оба открывают, а после сохранения страница у одного зависает, у другого становится вдвое выше. Точечная замена строки ничего не сдвинула.</p>
+</section>
+
+<section class="rd-sec">
+  <h2>Из чего выбираем</h2>
+  <div class="rd-grid">
+    <article class="rd-box rd-pick">
+      <span class="rd-tag">Рекомендую</span>
+      <h3>А. Своя панель + точечная запись</h3>
+      <p>Открываете страницу в кабинете, кликаете текст и пишете, кликаете картинку и загружаете новую, жмёте «Опубликовать».</p>
+      <dl class="rd-spec">
+        <dt>Плюсы</dt><dd>Вид сайта не меняется. Кабинет, замок и запись в GitHub уже есть в наших проектах. Клиенту нечем сломать дизайн.</dd>
+        <dt>Минусы</dt><dd>Код наш, поддерживаем сами. Блоки не двигаются и не добавляются.</dd>
+        <dt>Срок</dt><dd>1 / 1,7 / 3 ч моего времени (быстро / ожидание / долго)</dd>
+        <dt>Деньги</dt><dd>0 ₽ в месяц, если хватит GitHub Pages</dd>
+      </dl>
+    </article>
+    <article class="rd-box">
+      <h3>Б. VvvebJs + наша запись</h3>
+      <p>Берём готовый интерфейс редактора с панелями и отменой, а его сохранение заменяем точечным.</p>
+      <dl class="rd-spec">
+        <dt>Плюсы</dt><dd>Интерфейс готов и выглядит солидно. Лицензия Apache 2.0.</dd>
+        <dt>Минусы</dt><dd>Интерфейс английский и для разработчика: шрифт, цвет, стили, код. Придётся вырезать лишнее и держать чужой код.</dd>
+        <dt>Срок</dt><dd>2 / 3,3 / 6 ч, оценка менее надёжная: код редактора я не дорабатывал</dd>
+      </dl>
+    </article>
+    <article class="rd-box">
+      <h3>В. Настоящая CMS: TinaCMS или Apostrophe</h3>
+      <p>Правка на странице из коробки, но 71 страницу надо пересобрать на компоненты с полями.</p>
+      <dl class="rd-spec">
+        <dt>Плюсы</dt><dd>Полноценная CMS: новые страницы, блоки, роли.</dd>
+        <dt>Минусы</dt><dd>Теряем копию 1:1 и 180 вставок с их скриптами придётся переписывать. Нужен сервер.</dd>
+        <dt>Когда</dt><dd>Для новых сайтов с нуля, для Balance не окупается. Срок для Balance не считал.</dd>
+      </dl>
+    </article>
+    <article class="rd-box">
+      <h3>Г. CloudCannon, платный сервис</h3>
+      <p>Ближайший готовый сервис с правкой на странице, Astro поддерживает.</p>
+      <dl class="rd-spec">
+        <dt>Плюсы</dt><dd>Не пишем редактор и не держим его.</dd>
+        <dt>Минусы</dt><dd>От 49–55 $ в месяц. Закрытый код, чужой хостинг. Элементы всё равно надо размечать. Оплату из России не проверял.</dd>
+        <dt>Статус</dt><dd>Не запускал, только документация и цены. Есть пробные 21 день.</dd>
+      </dl>
+    </article>
+  </div>
+  <p>WordPress с Elementor как вариант не ставлю: это другой движок, все страницы заново и уход от закреплённого у нас Astro.</p>
+</section>
+
+<section class="rd-sec">
+  <h2>Опыт на настоящей странице</h2>
+  <p>Страница /imperial: 1,5 МБ, 133 скрипта. Сохранённый редактором результат открыл заново и замерил тем же кодом. Всё шло в памяти браузера, проект не менялся.</p>
+  <div class="rd-scroll">
+    <table>
+      <thead><tr><th>Что</th><th>Высота 1440 / 375, px</th><th>Всплывающее окно</th><th>Итог</th></tr></thead>
+      <tbody>
+        <tr><td>Оригинал (контроль)</td><td>6035 / 6702</td><td>открылось</td><td>эталон</td></tr>
+        <tr><td>Точечная замена текста и картинки</td><td>6035 / 6702</td><td>открылось</td><td class="rd-ok">совпало, правка встала</td></tr>
+        <tr><td>VvvebJs, сохранение как есть</td><td>не замерить</td><td>не проверить</td><td class="rd-no">страница зависла, 1,53 → 2,27 МБ</td></tr>
+        <tr><td>GrapesJS, со скриптами</td><td>11 707 / 13 096</td><td>открылось</td><td class="rd-no">вдвое выше оригинала</td></tr>
+        <tr><td>GrapesJS, настройки по умолчанию</td><td>не замерял</td><td>не проверял</td><td class="rd-no">из тела страницы убраны все 102 скрипта</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Причина у VvvebJs: он сохраняет страницу уже после работы рантайма Тильды, вместе со всем, что тот дописал. При новом открытии получаем ошибку переполнения стека и зависание. Причину удвоения у GrapesJS не разбирал; страницу обратно собирал я сам, настройками это, возможно, лечится. Но сам подход лишний: он пересобирает 1,5 МБ ради одной строки.</p>
+  <div class="rd-duo">
+    <figure>
+      <img src="img/inline.webp" width="1200" height="750" loading="lazy" decoding="async" alt="Страница Balance: под баннером текст в зелёной пунктирной рамке, набранный прямо на странице клавиатурой">
+      <figcaption>Вариант А, опыт: текст набран прямо на странице, рантайм Тильды продолжает работать. Панели здесь ещё нет.</figcaption>
+    </figure>
+    <figure>
+      <img src="img/patched.webp" width="1200" height="750" loading="lazy" decoding="async" alt="Страница Balance: вместо фото красный прямоугольник тех же размеров и со скруглёнными углами">
+      <figcaption>Вариант А, опыт: картинка заменена на красную заглушку, размер и скругление сохранились. То же на 375 px.</figcaption>
+    </figure>
+    <figure>
+      <img src="img/vvveb.webp" width="1200" height="750" loading="lazy" decoding="async" alt="Редактор VvvebJs со страницей Balance: панель форматирования над заголовком и настройки слева">
+      <figcaption>Вариант Б: VvvebJs открыл Balance без доработок. Правка текста работает, а шрифт, цвет и стили клиенту доступны тоже.</figcaption>
+    </figure>
+    <figure>
+      <img src="img/wp.webp" width="1200" height="750" loading="lazy" decoding="async" alt="Редактор страницы WordPress: верхняя панель с отменой и кнопкой публикации, настройки справа">
+      <figcaption>Настоящий редактор WordPress в Playground: отмена и повтор, список блоков, черновик, публикация, настройки справа.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="rd-sec">
+  <h2>Что берём у WordPress и Тильды</h2>
+  <p>WordPress хранит страницу как HTML с метками блоков и настройками в комментариях, поэтому редактор знает, где какой блок. У нас такую роль сыграют номер блока и номер элемента Тильды: у 15 007 элементов Zero-блоков внутри своего блока нет ни одного повтора.</p>
+  <ul>
+    <li><strong>От Тильды:</strong> наводишь и кликаешь прямо на странице, отдельная кнопка «Опубликовать».</li>
+    <li><strong>От WordPress:</strong> отмена и повтор, черновик до публикации, настройки выбранного элемента сбоку, просмотр телефонной версии.</li>
+    <li><strong>Не берём:</strong> перетаскивание блоков, стили, шрифты, цвета. Вы просили текст и картинки, остальное только сломает вёрстку.</li>
+  </ul>
+  <p>Кабинет Тильды для этого разбора я не открывал, её поведение описываю по вашей постановке.</p>
+</section>
+
+<section class="rd-sec">
+  <h2>Что будет в варианте А</h2>
+  <ol>
+    <li>Раздел кабинета «Редактор» за тем же логином: выбираете страницу из списка.</li>
+    <li>Клик по тексту: правите на месте. По желанию жирный и ссылка.</li>
+    <li>Клик по картинке: загрузка, сжатие, та же пропорция.</li>
+    <li>Просмотр на 1440 и 375 px и предупреждение, если текст вылез за блок.</li>
+    <li>Для шапки и подвала вопрос: «Этот блок на 56 страницах, менять везде?»</li>
+    <li>Отдельный список текстов из окон и меню: кликом их не достать, они скрыты.</li>
+    <li>«Опубликовать», статус сборки, история и откат.</li>
+  </ol>
+  <p>Правки лежат отдельным файлом и накладываются при сборке. Правку, для которой элемент не нашёлся, сборка показывает как ошибку, а не теряет молча.</p>
+  <p>Ту же схему можно перенести на rozalii и alex-krown: они сделаны тем же переносом с Тильды, это видно по скриптам и страницам в JSON, но панель там не проверял. Обычным Astro-сайтам (Milovini, Elite Rose, Газ-маг, KitAccess) нужен другой способ привязки текста к исходнику, это отдельная работа.</p>
+</section>
+
+<section class="rd-sec">
+  <h2>Что нашлось на Balance и повлияет на работу</h2>
+  <ul>
+    <li><strong>Живой сайт сейчас на Тильде.</strong> balance-fit.ru отвечает с Тильды, код лежит на копии GitHub Pages. Правки в панели на живой сайт не попадут, пока копию не выведем в бой. Сейчас это будет демонстрация.</li>
+    <li><strong>Общие блоки.</strong> 73 блока из 894 стоят сразу на нескольких страницах, самые частые на 56. Номер +7 861 205 18 18 встречается в тексте 165 раз.</li>
+    <li><strong>Скрытый текст.</strong> На «Империале» видно 119 текстовых элементов из 238, остальное в окнах и меню. Больше половины знаков (14,3 тыс. из 28 тыс.) лежит во всплывающих окнах.</li>
+    <li><strong>Длинный текст.</strong> Текст втрое длиннее на телефоне вылез за блок на 121 px, сам блок не растёт. На 1440 px в том же месте запас хватил. Нужны предупреждение и просмотр.</li>
+    <li><strong>Картинки лежат по-разному.</strong> На 71 странице 5148 тегов картинок, 372 фона и 184 ссылки внутри скриптов. Фоны надо делать отдельно, скрипты в первой версии не трогаем.</li>
+    <li><strong>HTML-вставки.</strong> 969 блоков без видимого текста кликом не правятся. В 209 из них есть русский текст внутри скрипта, 43,5 тыс. знаков, часть из этого комментарии. Что там из цен и подписей, ещё надо разобрать.</li>
+    <li><strong>У части обычных блоков нет готового адреса.</strong> Адрес поля есть в 1210 местах. Остальным стандартным блокам нужен путь внутри блока: это первая проверка при сборке.</li>
+    <li><strong>Повторный перенос.</strong> <code>npm run port</code> переписывает файлы страниц, поэтому правки и лежат отдельно.</li>
+    <li><strong>Публикация не мгновенная.</strong> Последние успешные сборки шли 1 мин 7 с и 3 мин 53 с. Мгновенно правка на сайте не появится.</li>
+    <li><strong>Ключ GitHub.</strong> В Elite Rose ключ хранится в браузере. Нам это подходит, клиенту нет: если править будет он, нужна маленькая служба на сервере с логином.</li>
+  </ul>
+</section>
+
+<section class="rd-sec">
+  <h2>Все просмотренные решения</h2>
+  <p class="rd-meta">Звёзды, лицензия и дата последнего коммита сняты через GitHub API 06.11.2026, если не указано иное.</p>
+  <div class="rd-scroll">
+    <table>
+      <thead><tr><th>Решение</th><th>★</th><th>Лицензия</th><th>Коммит</th><th>Как работает</th><th>Для Balance</th></tr></thead>
+      <tbody>
+        <tr class="rd-group"><td colspan="6">Берут готовый HTML</td></tr>
+        <tr><td><a href="https://github.com/givanz/VvvebJs">VvvebJs</a></td><td>8725</td><td>Apache 2.0</td><td>01.07.26</td><td class="rd-wrap">Открывает страницу в iframe, правка на месте, сохранение через PHP или Node</td><td class="rd-wrap"><span class="rd-mid">Запускал.</span> Редактор годен, сохранение нет</td></tr>
+        <tr><td><a href="https://github.com/GrapesJS/grapesjs">GrapesJS</a></td><td>26 387</td><td>BSD-подобная, текст полностью не читал</td><td>03.11.26</td><td class="rd-wrap">Разбирает HTML в свою модель, готового интерфейса для клиента нет</td><td class="rd-wrap"><span class="rd-no">Запускал.</span> Разбор 8,8 с, страница вдвое выше</td></tr>
+        <tr><td><a href="https://github.com/Charles-CMS/astro">Charles CMS</a></td><td>0</td><td>MIT</td><td>22.06.26</td><td class="rd-wrap">Самый близкий по идее: клик по тексту в Astro без схемы, запись в исходники</td><td class="rd-wrap"><span class="rd-no">Нет.</span> Astro до 7, у нас 7.3.8; вычисляемое не правит, а у нас rebase(page.body). Не запускал, 16 коммитов за три дня</td></tr>
+        <tr><td><a href="https://cloudcannon.com/pricing/">CloudCannon</a></td><td>–</td><td>платный</td><td>–</td><td class="rd-wrap">Разметка data-editable, сервис сам пересобирает сайт, 3 пользователя в тарифе</td><td class="rd-wrap"><span class="rd-mid">Не запускал.</span> См. вариант Г</td></tr>
+        <tr><td><a href="https://github.com/GetmeUK/ContentTools">ContentTools</a></td><td>3972</td><td>MIT</td><td>05.11.22</td><td class="rd-wrap">Области с data-editable, правка на месте, отправка на свой сервер</td><td class="rd-wrap"><span class="rd-no">Нет.</span> Не обновляется четыре года</td></tr>
+        <tr><td><a href="https://github.com/mavoweb/mavo">Mavo</a></td><td>2866</td><td>MIT</td><td>23.04.25</td><td class="rd-wrap">HTML с атрибутами становится приложением, раздел о хранении прочитать не удалось</td><td class="rd-wrap"><span class="rd-mid">Не разбирал,</span> обновляется редко</td></tr>
+        <tr><td><a href="https://github.com/GindaChen/live-html">live-html</a>, <a href="https://github.com/savonge/clobber">Clobber</a></td><td>0</td><td>MIT</td><td>04–05.26</td><td class="rd-wrap">Правка своих файлов на своём компьютере</td><td class="rd-wrap"><span class="rd-no">Нет.</span> Не для клиента и не для сервера</td></tr>
+        <tr class="rd-group"><td colspan="6">CMS с правкой на странице: нужен разложенный контент</td></tr>
+        <tr><td><a href="https://tina.io/docs/frameworks/astro">TinaCMS</a></td><td>13 869</td><td>Apache 2.0</td><td>06.11.26</td><td class="rd-wrap">Статика требует обёртку TinaIsland на каждую область; своё размещение: база, Git, вход, сервер</td><td class="rd-wrap">Для новых сайтов</td></tr>
+        <tr><td><a href="https://apostrophecms.com/solutions/astro-cms">Apostrophe</a></td><td>4658</td><td>MIT</td><td>05.11.26</td><td class="rd-wrap">Правка на работающем сервере Node + SQLite, можно публиковать статику</td><td class="rd-wrap">Для новых сайтов</td></tr>
+        <tr><td><a href="https://directus.com/docs/guides/content/visual-editor/frontend-library">Directus</a></td><td>38 725</td><td>MSCL-1.0-GPL</td><td>05.11.26</td><td class="rd-wrap">Атрибут data-directus связывает элемент с полем базы, нужен свой сервер Directus</td><td class="rd-wrap">Только с переносом контента в базу</td></tr>
+        <tr><td><a href="https://payloadcms.com/docs/live-preview/overview">Payload</a></td><td>45 681</td><td>MIT</td><td>06.11.26</td><td class="rd-wrap">Форма плюс просмотр сайта в iframe. Клика по тексту на странице о просмотре нет</td><td class="rd-wrap">Не то</td></tr>
+        <tr><td><a href="https://www.sanity.io/docs/astro/astro-visual-editing">Sanity</a></td><td>6382</td><td>MIT, но данные в их облаке</td><td>05.11.26</td><td class="rd-wrap">Клик ведёт к полю формы. Для Astro нужен рендер на сервере, статика не работает</td><td class="rd-wrap">Не подходит</td></tr>
+        <tr class="rd-group"><td colspan="6">Конструкторы: страницы собираются заново</td></tr>
+        <tr><td><a href="https://github.com/puckeditor/puck">Puck</a></td><td>13 635</td><td>MIT</td><td>05.11.26</td><td class="rd-wrap">Встраиваемый редактор на React из своих компонентов</td><td class="rd-wrap">Новые сайты, если нужны блоки</td></tr>
+        <tr><td><a href="https://github.com/webstudio-is/webstudio">Webstudio</a></td><td>9150</td><td>AGPL-3.0</td><td>05.11.26</td><td class="rd-wrap">Открытая замена Webflow</td><td class="rd-wrap">Нет, другой движок</td></tr>
+        <tr><td><a href="https://github.com/silexlabs/Silex">Silex</a></td><td>3033</td><td>AGPL-3.0</td><td>05.11.26</td><td class="rd-wrap">Конструктор статических сайтов</td><td class="rd-wrap">Нет, другой движок</td></tr>
+        <tr class="rd-group"><td colspan="6">Формы отдельно от страницы (по обзорам, не запускал)</td></tr>
+        <tr><td><a href="https://github.com/decaporg/decap-cms">Decap</a>, <a href="https://github.com/sveltia/sveltia-cms">Sveltia</a>, <a href="https://github.com/Thinkmill/keystatic">Keystatic</a></td><td>19 459, 3044, 2501</td><td>MIT</td><td>10–11.26</td><td class="rd-wrap">Правка в форме, запись в Git, клика по странице нет</td><td class="rd-wrap">Нет: вы просили правку на странице</td></tr>
+        <tr class="rd-group"><td colspan="6">WordPress</td></tr>
+        <tr><td><a href="https://github.com/elementor/elementor">Elementor</a></td><td>7100</td><td>GPL-3.0</td><td>05.11.26</td><td class="rd-wrap">Самый тильдоподобный, но работает только внутри WordPress</td><td class="rd-wrap">Нет, уход с Astro</td></tr>
+        <tr><td><a href="https://github.com/Automattic/isolated-block-editor">Isolated Block Editor</a></td><td>412</td><td>GitHub не определил</td><td>21.10.26</td><td class="rd-wrap">Редактор WordPress без WordPress. Помечен как экспериментальный, работает с блоками WordPress, а не с чужим HTML</td><td class="rd-wrap">Нет</td></tr>
+        <tr class="rd-group"><td colspan="6">Готовый кирпич для варианта А</td></tr>
+        <tr><td><a href="https://github.com/ueberdosis/tiptap">Tiptap</a></td><td>38 970</td><td>MIT</td><td>06.11.26</td><td class="rd-wrap">Правка текста с форматированием, если нужны жирный и ссылки</td><td class="rd-wrap"><span class="rd-ok">Берём при необходимости</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="rd-sec">
+  <h2>Как я это проверил</h2>
+  <div class="rd-scroll">
+    <table>
+      <thead><tr><th>Утверждение</th><th>Как проверил</th><th>Итог</th></tr></thead>
+      <tbody>
+        <tr><td class="rd-wrap">Подмена текста и картинки не ломает страницу</td><td class="rd-wrap">Подмена в HTML, рантайм Тильды, 1440 и 375 px, замер высоты и окна</td><td class="rd-ok">Верно, на одной странице</td></tr>
+        <tr><td class="rd-wrap">Ошибка JS classList вызвана опытом</td><td class="rd-wrap">Контроль на нетронутой странице, плюс запись в docs/ТЕХДОЛГ.md</td><td class="rd-no">Неверно: она есть и в оригинале</td></tr>
+        <tr><td class="rd-wrap">У HTML-вставок 0 знаков видимого текста: ошибка разбора?</td><td class="rd-wrap">Посмотрел блоки и пересчитал кириллицу в их скриптах</td><td class="rd-ok">Ноль настоящий, но в 209 есть текст в скриптах</td></tr>
+        <tr><td class="rd-wrap">GrapesJS теряет элементы: 400 против 3636</td><td class="rd-wrap">Сверил теги t396__elem: в исходнике тоже 400, остальное селекторы в CSS</td><td class="rd-no">Неверно: моя ошибка подсчёта, элементы на месте</td></tr>
+        <tr><td class="rd-wrap">Charles CMS подходит, как писал поиск</td><td class="rd-wrap">Прочитал README и package.json, код не запускал</td><td class="rd-no">Не подходит: версия Astro и вычисляемый контент</td></tr>
+        <tr><td class="rd-wrap">Живой сайт на Тильде</td><td class="rd-wrap">Запрос к balance-fit.ru: ответ 200, 43 строки со ссылками tildacdn</td><td class="rd-ok">Верно</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>Не проверено.</strong> Опыты шли на одной странице из 71, в безголовом браузере и на настройках редакторов по умолчанию. Рабочей панели ещё нет, поэтому срок варианта А остаётся прогнозом. CloudCannon, Tina, Apostrophe, Directus, Payload и Sanity оценены по документации, Decap, Sveltia и Keystatic по обзорам. Загрузку настоящей картинки на сервер не делал, в опыте была заглушка.</p>
+</section>
+
+<section class="rd-sec">
+  <h2>Что нужно решить</h2>
+  <ol>
+    <li><strong>Какой вариант?</strong> Рекомендую А.</li>
+    <li><strong>Кто будет править: клиент или только мы?</strong> Если клиент, добавляется служба на сервере для записи: ключ GitHub ему отдавать нельзя. Если пока мы, хватит текущей схемы.</li>
+    <li><strong>Форматирование нужно?</strong> По умолчанию беру только текст, жирный и ссылку.</li>
+    <li><strong>Balance остаётся демонстрацией?</strong> Пока копия не в бою, правки живой сайт не меняют. Вывод в бой отдельным решением.</li>
+  </ol>
+</section>
+
+</main>
+</body>
+</html>
